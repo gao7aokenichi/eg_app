@@ -1,0 +1,12 @@
+<h1>暗号文作成</h1>
+<%= form_with url: "/posts", method: :post, local: true do |form| %>
+  <%= form.text_field :content %>
+  <%= form.submit '作成する' %>
+
+<% end %>
+
+<h1>解読文作成</h1>
+<%= form_with url: "/posts", method: :post, local: true do |form| %>
+  <%= form.text_field :content %>
+  <%= form.submit '作成する' %>
+<% end %>

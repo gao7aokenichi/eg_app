@@ -1,3 +1,43 @@
-<h1>トップページ</h1>
-<%= "1: エンコード 2: デコード" %>
-<%# <% input = gets.chomp.to_i %> %>
+<div>
+  <h1>暗号解読</h1>
+  <%= link_to '暗号文作成', '/posts/new' %>
+  <% str = @posts.content.tr("abcdefghijklmnopqrstuvwxyz","jphnzvqcbudiwxerylkagsofmt") %>
+  <% rotor = [] %>
+  <% count = 0 %>
+  <% str.chars.each do |char| %>
+    <% num = char.ord - 97 %>
+    <% num2 = (num - count) % 26 %>
+    <% num3 = num2 + 97 %>
+    <% rotor << num3.chr %>
+    <% if count % (26 * 26) == 0 && count > 0 %>
+      <% count += 13 %>
+    <% elsif count % 26 == 0 && count > 0 %>
+      <% count += 13 %>
+    <% else %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+  <%= "アンゴウ: #{rotor.join}" %>
+</div>
+
+<%= link_to '暗号文解読', '/posts/new' %>
+<% str = @posts.content %>
+  <% rotor = [] %>
+  <% count = 0 %>
+  <% str.chars.each do |char| %>
+    <% num = char.ord - 97 %>
+    <% num2 = (num - count) % 26 %>
+    <% num3 = num2 + 97 %>
+    <% rotor << num3.chr %>
+    <% if count % (26 * 26) == 0 && count < 0 %>
+      <% count -= 13 %>
+    <% elsif count % 26 == 0 && count < 0 %>
+      <% count -= 13 %>
+    <% else %>
+      <% count -= 1 %>
+    <% end %>
+  <% end %>
+  <% rotor = rotor.join %>
+  <% rotor = rotor.tr("jphnzvqcbudiwxerylkagsofmt","abcdefghijklmnopqrstuvwxyz") %>
+
+  <%= "カイドク: #{rotor}" %>
