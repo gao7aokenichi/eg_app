@@ -1,6 +1,8 @@
-<div>
   <h1>暗号解読</h1>
+  <div>
   <%= link_to '暗号文作成', '/posts/new' %>
+  </div>
+<div>
   <% str = @posts.content.tr("abcdefghijklmnopqrstuvwxyz","jphnzvqcbudiwxerylkagsofmt") %>
   <% rotor = [] %>
   <% count = 0 %>
@@ -20,8 +22,11 @@
   <%= "アンゴウ: #{rotor.join}" %>
 </div>
 
-<%= link_to '暗号文解読', '/posts/new' %>
-<% str = @posts.content %>
+<div>
+  <%= link_to '暗号文解読', '/posts/new' %>
+</div>
+<div>
+  <% str = @posts.content %>
   <% rotor = [] %>
   <% count = 0 %>
   <% str.chars.each do |char| %>
@@ -39,5 +44,5 @@
   <% end %>
   <% rotor = rotor.join %>
   <% rotor = rotor.tr("jphnzvqcbudiwxerylkagsofmt","abcdefghijklmnopqrstuvwxyz") %>
-
   <%= "カイドク: #{rotor}" %>
+</div>
